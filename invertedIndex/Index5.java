@@ -46,9 +46,9 @@ public class Index5 {
         // Iterator<Integer> it2 = hset.iterator();
         System.out.print("[");
         while (p != null) {
-            /// -4- **** complete here ****
-            // fix get rid of the last comma
-            System.out.print("" + p.docId + "," );
+            if(p.next != null){
+                System.out.print(p.docId + "," );
+            }
             p = p.next;
         }
         System.out.println("]");
