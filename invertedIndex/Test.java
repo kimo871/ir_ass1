@@ -43,14 +43,18 @@ public class Test {
        // System.out.println("Boo0lean Model result = \n" + index.find_24_01(test3));
 
         String phrase = "";
-
         do {
             System.out.println("Print search phrase: ");
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             phrase = in.readLine();
-/// -3- **** complete here ****
-           
+            // if pharase is not empty -> print it's content
+            if (!phrase.isEmpty()) {
+                System.out.println("Search result: ");
+                String[] searchResult = index.find(phrase);
+                for (String result : searchResult) {
+                    System.out.println(result);
+                }
+            }
         } while (!phrase.isEmpty());
 
-    }
 }
