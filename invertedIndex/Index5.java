@@ -24,6 +24,12 @@ import java.io.PrintWriter;
  */
 public class Index5 {
 
+    public String Name ; 
+    
+    public String getName (){
+        return Name;
+       }
+
     //--------------------------------------------
     int N = 0; // number of documents
     public Map<Integer, SourceRecord> sources;  // store the doc_id and the file name.
@@ -267,13 +273,13 @@ public class Index5 {
                 wr.write(entry.getValue().text.toString().replace(',', '~') + "\n");
             }
             wr.write("section2" + "\n");
-System.out.println("ff");
+
             Iterator it = index.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry) it.next();
                 DictEntry dd = (DictEntry) pair.getValue();
                   System.out.println("** [" + pair.getKey() + "," + dd.doc_freq + "] <" + dd.term_freq + "> =--> ");
-                wr.write(pair.getKey().toString() + "," + dd.doc_freq + "," + dd.term_freq + ";");
+                wr.write(pair.getKey().toString() + "," + dd.doc_freq + "," + dd.term_freq + ";"+"\n");
                 Posting p = dd.pList;
                 while (p != null) {
                     //    System.out.print( p.docId + "," + p.dtf + ":");
@@ -295,8 +301,7 @@ System.out.println("ff");
         java.io.File f = new java.io.File("C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\"+storageName);
         if (f.exists() && !f.isDirectory())
             return true;
-        return false;
-            
+        return false;       
     }
 // Creating File .  
     public void createStore(String storageName) {
