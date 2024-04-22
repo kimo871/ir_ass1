@@ -19,7 +19,7 @@ public class Test {
         Index5 index = new Index5();
         //|**  change it to your collection directory 
         //|**  in windows "C:\\tmp11\\rl\\collection\\"       
-        String files = "data/tmp11/rl/collection/";
+        String files = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection\\";
 
         File file = new File(files);
         System.out.println(file);
@@ -27,7 +27,6 @@ public class Test {
         //|** String[] 	list()
         //|**  Returns an array of strings naming the files and directories in the directory denoted by this abstract pathname.
         String[] fileList = file.list();
-        
         fileList = index.sort(fileList);
         index.N = fileList.length;
         System.out.println(fileList[0]);
@@ -50,11 +49,12 @@ public class Test {
             // if pharase is not empty -> print it's content
             if (!phrase.isEmpty()) {
                 System.out.println("Search result: ");
-                String[] searchResult = index.find(phrase);
-                for (String result : searchResult) {
-                    System.out.println(result);
-                }
+                String searchResult = index.find_24_01(phrase);
+                System.out.println(searchResult);
+                //System.out.println("ss "+index.intersect(index.index.get("episodic").pList,index.index.get("wastes").pList));
             }
         } while (!phrase.isEmpty());
+
+}
 
 }

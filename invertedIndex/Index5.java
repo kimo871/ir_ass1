@@ -41,8 +41,8 @@ public class Index5 {
     }
 
 
-    //---------------------------------------------
-    public void printPostingList(Posting p) {
+    // Printing posing list for sepecfic word
+    public void printPostingList(Posting p) { // 
         // Iterator<Integer> it2 = hset.iterator();
         System.out.print("[");
         while (p != null) {
@@ -54,7 +54,7 @@ public class Index5 {
         System.out.println("]");
     }
 
-    //---------------------------------------------
+    // Printing dictionary that includes term freq & and it's freq in every document also holding the posting list.
     public void printDictionary() {
         Iterator it = index.entrySet().iterator();
         while (it.hasNext()) {
@@ -67,7 +67,7 @@ public class Index5 {
         System.out.println("*** Number of terms = " + index.size());
     }
  
-    //-----------------------------------------------
+    // Mainly it maintains sources data structure of loading document as objects with ids in memory then calling indexonline to maintain index datastructure which holds each word mapped to it's posting list.
     public void buildIndex(String[] files) {  // list of files with their pathes to read it
         int fid = 0; // intialize document id
         for (String fileName : files) {
@@ -85,18 +85,18 @@ public class Index5 {
                   
                 }
                 sources.get(fid).length = flen;
-                System.out.println("document length "+fid+" " + flen);
+                //System.out.println("document length "+fid+" " + flen);
 
             } catch (IOException e) {
                 System.out.println("File " + fileName + " not found. Skip it");
             }
             fid++;
         }
-        //   printDictionary();
+           
     }
 
 
-    //----------------------------------------------------------------------------  
+    // Maintaing Index DataStructure through extracting every word from every line in each file and skipping the stopped ones then add the rest to index mapped to their posting list .
     public int indexOneLine(String ln, int fid) {
         int flen = 0;
 
@@ -113,6 +113,7 @@ public class Index5 {
             // if not add it
             if (!index.containsKey(word)) {
                 index.put(word, new DictEntry());
+               
             }
             // add document id to the posting list
             if (!index.get(word).postingListContains(fid)) {
@@ -138,7 +139,7 @@ public class Index5 {
         return flen;
     }
 
-//----------------------------------------------------------------------------  
+// Checking if passed string argument is stopword or not .
     boolean stopWord(String word) {
         if (word.equals("the") || word.equals("to") || word.equals("be") || word.equals("for") || word.equals("from") || word.equals("in")
                 || word.equals("a") || word.equals("into") || word.equals("by") || word.equals("or") || word.equals("and") || word.equals("that")) {
@@ -150,7 +151,7 @@ public class Index5 {
         return false;
 
     }
-//----------------------------------------------------------------------------  
+// Reduce a given word to its base or root form .
 
     String stemWord(String word) { //skip for now
         return word;
@@ -160,7 +161,7 @@ public class Index5 {
 //        return s.toString();
     }
 
-    //----------------------------------------------------------------------------  
+    // Returning The matched document that contains the two words  from two posting lists . 
     Posting intersect(Posting pL1, Posting pL2) {
 ///****  -1-   complete after each comment ****
 //   INTERSECT ( p1 , p2 )
@@ -204,16 +205,16 @@ public class Index5 {
 //      10 return answer
         return answer;
     }
-
+    // Used for passing query wanted to be retreived and getting the result of which document it is included & document length
     public String find_24_01(String phrase) { // any mumber of terms non-optimized search 
         String result = "";
         String[] words = phrase.split("\\W+");
         int len = words.length;
         
         //fix this if word is not in the hash table will crash...   --> fixed 
-        System.out.println(index.get("mm").pList);
-        DictEntry ans = index.get(words[0].toLowerCase());
-        if (ans!=null){
+        
+        if (index.get(words[0].toLowerCase())!=null){
+            DictEntry ans =index.get(words[0].toLowerCase());
             Posting posting = ans.pList;
             int i = 1;
             while (i < len) {
@@ -230,7 +231,7 @@ public class Index5 {
     }
     
     
-    //---------------------------------
+    // Sorts an array of words or file names lexicographically using the bubble sort algorithm.
     String[] sort(String[] words ) {  //bubble sort
         boolean sorted = false;
         String sTmp;
@@ -250,11 +251,11 @@ public class Index5 {
         return words;
     }
 
-     //---------------------------------
+     // Saving  The Maintained Datastructure  Sources & index to file index which will be first section of each document with it's details (path,..etc..) then second section of each word mapped to which documents included in by their ids.
 
     public void store(String storageName) {
         try {
-            String pathToStorage = "/home/ehab/tmp11/rl/"+storageName;
+            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\ "+storageName;
             Writer wr = new FileWriter(pathToStorage);
             for (Map.Entry<Integer, SourceRecord> entry : sources.entrySet()) {
                 System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue().URL + ", Value = " + entry.getValue().title + ", Value = " + entry.getValue().text);
@@ -266,12 +267,12 @@ public class Index5 {
                 wr.write(entry.getValue().text.toString().replace(',', '~') + "\n");
             }
             wr.write("section2" + "\n");
-
+System.out.println("ff");
             Iterator it = index.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry) it.next();
                 DictEntry dd = (DictEntry) pair.getValue();
-                //  System.out.print("** [" + pair.getKey() + "," + dd.doc_freq + "] <" + dd.term_freq + "> =--> ");
+                  System.out.println("** [" + pair.getKey() + "," + dd.doc_freq + "] <" + dd.term_freq + "> =--> ");
                 wr.write(pair.getKey().toString() + "," + dd.doc_freq + "," + dd.term_freq + ";");
                 Posting p = dd.pList;
                 while (p != null) {
@@ -289,18 +290,18 @@ public class Index5 {
             e.printStackTrace();
         }
     }
-//=========================================    
+// Checking if specific file exists .  
     public boolean storageFileExists(String storageName){
-        java.io.File f = new java.io.File("/home/ehab/tmp11/rl/"+storageName);
+        java.io.File f = new java.io.File("C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\"+storageName);
         if (f.exists() && !f.isDirectory())
             return true;
         return false;
             
     }
-//----------------------------------------------------    
+// Creating File .  
     public void createStore(String storageName) {
         try {
-            String pathToStorage = "/home/ehab/tmp11/"+storageName;
+            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\"+storageName;
             Writer wr = new FileWriter(pathToStorage);
             wr.write("end" + "\n");
             wr.close();
@@ -309,11 +310,10 @@ public class Index5 {
             e.printStackTrace();
         }
     }
-//----------------------------------------------------      
-     //load index from hard disk into memory
+// Loading Data Saved in index file  To construct Sources & index .   
     public HashMap<String, DictEntry> load(String storageName) {
         try {
-            String pathToStorage = "/home/ehab/tmp11/rl/"+storageName;         
+            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\"+storageName;         
             sources = new HashMap<Integer, SourceRecord>();
             index = new HashMap<String, DictEntry>();
             BufferedReader file = new BufferedReader(new FileReader(pathToStorage));
