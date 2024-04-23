@@ -12,10 +12,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import static java.lang.Math.log10;
 import static java.lang.Math.sqrt;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+
+import java.util.*;
 import java.io.PrintWriter;
 
 /**
@@ -119,8 +117,8 @@ public class Index5 {
             // if not add it
             if (!index.containsKey(word)) {
                 index.put(word, new DictEntry());
-               
             }
+
             // add document id to the posting list
             if (!index.get(word).postingListContains(fid)) {
                 index.get(word).doc_freq += 1; //set doc freq to the number of doc that contain the term 
@@ -196,11 +194,11 @@ public class Index5 {
                 pL2 = pL2.next;
             }
 //           7   else if docID ( p1 ) < docID ( p2 )
-                if(pL1.docId < pL2.docId) {
+            else if(pL1.docId < pL2.docId) {
 //          8        then p1 ← next ( p1 )
                     pL1 = pL1.next;
                 }
-                else{
+            else{
     //          9        else p2 ← next ( p2 )
                     pL2 = pL2.next;
                 }
@@ -211,6 +209,8 @@ public class Index5 {
 //      10 return answer
         return answer;
     }
+
+
     // Used for passing query wanted to be retreived and getting the result of which document it is included & document length
     public String find_24_01(String phrase) { // any mumber of terms non-optimized search 
         String result = "";
@@ -257,11 +257,14 @@ public class Index5 {
         return words;
     }
 
+
+
      // Saving  The Maintained Datastructure  Sources & index to file index which will be first section of each document with it's details (path,..etc..) then second section of each word mapped to which documents included in by their ids.
 
     public void store(String storageName) {
         try {
-            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\ "+storageName;
+//            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\ "+storageName;
+            String pathToStorage = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\" + storageName;
             Writer wr = new FileWriter(pathToStorage);
             for (Map.Entry<Integer, SourceRecord> entry : sources.entrySet()) {
                 System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue().URL + ", Value = " + entry.getValue().title + ", Value = " + entry.getValue().text);
@@ -282,7 +285,7 @@ public class Index5 {
                 wr.write(pair.getKey().toString() + "," + dd.doc_freq + "," + dd.term_freq + ";"+"\n");
                 Posting p = dd.pList;
                 while (p != null) {
-                    //    System.out.print( p.docId + "," + p.dtf + ":");
+                    System.out.print( p.docId + "," + p.dtf + ":");
                     wr.write(p.docId + "," + p.dtf + ":");
                     p = p.next;
                 }
@@ -298,7 +301,7 @@ public class Index5 {
     }
 // Checking if specific file exists .  
     public boolean storageFileExists(String storageName){
-        java.io.File f = new java.io.File("C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\"+storageName);
+        java.io.File f = new java.io.File("D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\"+storageName);
         if (f.exists() && !f.isDirectory())
             return true;
         return false;       
@@ -306,7 +309,8 @@ public class Index5 {
 // Creating File .  
     public void createStore(String storageName) {
         try {
-            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\"+storageName;
+//            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\"+storageName;
+            String pathToStorage = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\";
             Writer wr = new FileWriter(pathToStorage);
             wr.write("end" + "\n");
             wr.close();
@@ -318,7 +322,7 @@ public class Index5 {
 // Loading Data Saved in index file  To construct Sources & index .   
     public HashMap<String, DictEntry> load(String storageName) {
         try {
-            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\"+storageName;         
+            String pathToStorage = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\" + storageName;
             sources = new HashMap<Integer, SourceRecord>();
             index = new HashMap<String, DictEntry>();
             BufferedReader file = new BufferedReader(new FileReader(pathToStorage));

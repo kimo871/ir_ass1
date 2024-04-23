@@ -10,7 +10,7 @@ package invertedIndex;
  */
  
 public class Posting {
-    // posting is data structure holding list of doucments the word mentioned in
+    // posting is data structure holding list of documents the word mentioned in
     public Posting next = null;
     int docId;
     int dtf = 1;
