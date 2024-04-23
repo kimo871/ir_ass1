@@ -107,14 +107,14 @@ public class BiWordModel extends Index5 {
         String[] words = phrase.split("\\s+");
         int len = words.length;
         if(len == 1){
-            return searchForPhrase(words[0]);
+            return searchForPhrase(words[0].toLowerCase());
         }
 
        if(len == 2){
            if(this.stopWord(words[0]) || this.stopWord(words[1])){
                return "Not found";
            }
-           String searchResult = words[0] + '_' + words[1];
+           String searchResult = words[0].toLowerCase() + '_' + words[1].toLowerCase();
            return searchForPhrase(searchResult);
        }
 
