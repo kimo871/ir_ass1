@@ -55,10 +55,10 @@ public class DictEntry {
         if(!postingListContains(i)){
             doc_freq++;
             if (pList == null) {
-                pList = new Posting(i);
+                pList = new Posting(i, 1, position);
                 last = pList;
             } else {
-                last.next = new Posting(i);
+                last.next = new Posting(i, 1, position);
                 last = last.next;
             }
         }else{
