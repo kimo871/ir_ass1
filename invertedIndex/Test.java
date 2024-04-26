@@ -39,7 +39,7 @@ public class Test {
         for (HashMap.Entry<Integer, Index5> entry : Models.entrySet()) {
             if(choice == entry.getKey()){
 //                String files = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection\\";
-                String files = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\" ;
+                String files = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection\\" ;
                 File file = new File(files);
 
                 //|** String[] 	list()
@@ -82,7 +82,7 @@ public class Test {
         Index5 index = new Index5();
         //|**  change it to your collection directory 
         //|**  in windows "C:\\tmp11\\rl\\collection\\"       
-        String files = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\";
+        String files = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection";
 
         File file = new File(files);
         System.out.println(file);

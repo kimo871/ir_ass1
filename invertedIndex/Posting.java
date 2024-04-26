@@ -23,6 +23,11 @@ public class Posting {
         docId = id;
         dtf=t;
     }
+
+    Posting(int id , List<Integer>pos){
+        docId = id;
+        positions = pos;
+    }
     Posting(int id, int t, int position) {
         docId = id;
         dtf=t;

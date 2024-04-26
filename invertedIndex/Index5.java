@@ -218,13 +218,17 @@ public class Index5 {
         int len = words.length;
         
         //fix this if word is not in the hash table will crash...   --> fixed 
+        DictEntry ans = index.get(words[0].toLowerCase());
         
-        if (index.get(words[0].toLowerCase())!=null){
-            DictEntry ans =index.get(words[0].toLowerCase());
+        if (ans!=null){
             Posting posting = ans.pList;
             int i = 1;
             while (i < len) {
-                posting = intersect(posting, index.get(words[i].toLowerCase()).pList);
+                DictEntry entry = index.get(words[i].toLowerCase());
+                if (entry != null) {
+                    posting = intersect(posting, entry.pList);
+                }
+
                 i++;
             }
             while (posting != null) {
@@ -264,7 +268,7 @@ public class Index5 {
     public void store(String storageName) {
         try {
 //            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\ "+storageName;
-            String pathToStorage = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\" + storageName;
+            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\" + storageName;
             Writer wr = new FileWriter(pathToStorage);
             for (Map.Entry<Integer, SourceRecord> entry : sources.entrySet()) {
                 System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue().URL + ", Value = " + entry.getValue().title + ", Value = " + entry.getValue().text);
@@ -301,7 +305,7 @@ public class Index5 {
     }
 // Checking if specific file exists .  
     public boolean storageFileExists(String storageName){
-        java.io.File f = new java.io.File("D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\"+storageName);
+        java.io.File f = new java.io.File("C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection"+storageName);
         if (f.exists() && !f.isDirectory())
             return true;
         return false;       
@@ -310,7 +314,7 @@ public class Index5 {
     public void createStore(String storageName) {
         try {
 //            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\"+storageName;
-            String pathToStorage = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\";
+            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection";
             Writer wr = new FileWriter(pathToStorage);
             wr.write("end" + "\n");
             wr.close();
@@ -322,7 +326,7 @@ public class Index5 {
 // Loading Data Saved in index file  To construct Sources & index .   
     public HashMap<String, DictEntry> load(String storageName) {
         try {
-            String pathToStorage = "D:\\IR\\invertedIndex\\data\\tmp11\\rl\\collection\\" + storageName;
+            String pathToStorage = "C:\\Users\\iTECH\\OneDrive\\Desktop\\20210350_20210201_20211060_20210533\\20210350_20210201_20211060_20210533\\is322_HW_1\\src\\invertedIndex\\data\\tmp11\\rl\\collection" + storageName;
             sources = new HashMap<Integer, SourceRecord>();
             index = new HashMap<String, DictEntry>();
             BufferedReader file = new BufferedReader(new FileReader(pathToStorage));
