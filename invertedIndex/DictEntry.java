@@ -9,17 +9,12 @@ package invertedIndex;
  * @author ehab
  */
 public class DictEntry {
-    // the data structure holds   posting which is list of documents + doc_freq and term_freq
     public int doc_freq = 0; // number of documents that contain the term
     public int term_freq = 0; //number of times the term is mentioned in the collection
-//=====================================================================
-    //public HashSet<Integer> postingList;
     Posting pList = null;
     Posting last = null;
-//------------------------------------------------
-   // method take documetn id to check if it's in this posting list or not
+
     boolean postingListContains(int i) {
-        boolean found = false;
         Posting p = pList;
         while (p != null) {
             if (p.docId == i) {
@@ -27,9 +22,8 @@ public class DictEntry {
             }
             p = p.next;
         }
-        return found;
+        return false;
     }
-//------------------------------------------------
 
     int getPosting(int i) {
         int found = 0;
@@ -46,10 +40,8 @@ public class DictEntry {
         }
         return found;
     }
-//------------------------------------------------
 
     void addPosting(int i) {
-        // pList = new Posting(i);
         if (pList == null) {
             pList = new Posting(i);
             last = pList;
@@ -58,15 +50,36 @@ public class DictEntry {
             last = last.next;
         }
     }
-// implement insert (int docId) method
- 
+
+    void addPosting(int i, int position) {
+        if(!postingListContains(i)){
+            doc_freq++;
+            if (pList == null) {
+                pList = new Posting(i);
+                last = pList;
+            } else {
+                last.next = new Posting(i);
+                last = last.next;
+            }
+        }else{
+            Posting p = pList;
+            while(p != null){
+                if(p.docId == i){
+                    p.addPosition(position);
+                    break;
+                }
+                p = p.next;
+            }
+            term_freq ++;
+        }
+
+    }
     DictEntry() {
         //  postingList = new HashSet<Integer>();
     }
 
     DictEntry(int df, int tf) {
-        doc_freq = df; 
+        doc_freq = df;
         term_freq = tf;
     }
-
 }
