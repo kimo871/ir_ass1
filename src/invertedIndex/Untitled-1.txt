@@ -1,0 +1,5 @@
+Engineered a full-stack job board web application using MongoDB, Express, Node.js, React, and Redux, ensuring comprehensive functionality.
+Integrated critical features such as user authentication, job posting/searching, application tracking, and email notifications to optimize user engagement.
+Established seamless communication between the back-end and front-end using RESTful APIs, enhancing overall performance and responsiveness.
+Openly shared project code on GitHub to facilitate collaboration and gather valuable feedback from the developer community.
+Recognized with a certificate of completion from Codsoft, affirming the successful execution of this impactful web development project.
