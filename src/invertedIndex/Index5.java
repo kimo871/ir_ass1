@@ -299,7 +299,7 @@ public class Index5 {
          while(pList!=null){
             System.out.println("docID "+pList.docId + " "+pList.dtf);
             scores[pList.docId] += (1 + log10((double) pList.dtf) * idf); //tf-idf weight
-            cosineSim[pList.docId] += (query.get(term)*idf)*(1 + log10((double) pList.dtf) * idf);
+            cosineSim[pList.docId] += (query.get(term))*(pList.dtf);
             //(query.get(term)*idf)*(1 + log10((double) pList.dtf) * idf);
             System.out.println((1 + log10((double) pList.dtf) * idf));
             pList = pList.next;
