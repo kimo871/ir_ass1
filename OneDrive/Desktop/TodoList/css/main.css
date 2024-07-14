@@ -1,0 +1,362 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+.lightTheme {
+  background: white;
+  color: #1a1a1a;
+}
+
+.darkTheme {
+  background: #1a1a1a;
+  color: white;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background: white;
+  color: #1a1a1a !important;
+}
+
+* {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
+}
+
+nav {
+  background: white;
+  color: #1a1a1a;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+nav li {
+  list-style-type: none;
+  font-size: 17px;
+}
+nav li {
+  font-weight: bold;
+}
+
+main {
+  position: relative;
+  top: 0px;
+  min-height: 80vh;
+}
+main i.fa-moon {
+  position: fixed;
+  z-index: 999999999;
+  top: 50%;
+  right: 0px;
+  background: #6c63ff;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+main i.fa-plus {
+  position: fixed;
+  z-index: 999999999;
+  top: 90%;
+  right: 2%;
+  background: #6c63ff;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+div.side-nav {
+  position: fixed;
+  background: white;
+  color: #1a1a1a;
+  width: 22%;
+  height: 100%;
+  background: rgba(36, 36, 36, 0.0196078431);
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+}
+div.side-nav li {
+  list-style-type: none;
+  font-size: 17px;
+}
+div.side-nav li {
+  min-height: 2em;
+  padding: 15px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 18px;
+  border-left: 4px solid transparent;
+  transition: 0.3s ease-in-out;
+}
+div.side-nav li i {
+  position: relative;
+  font-size: 9px;
+  margin-right: 5px;
+  bottom: 3px;
+}
+div.side-nav li:hover {
+  background: rgba(36, 36, 36, 0.0509803922);
+  border-left-color: #6c63ff;
+}
+div.side-nav p span {
+  margin-left: 10px;
+}
+
+div.list-container {
+  display: flex;
+  padding: 5px 15px;
+  justify-content: space-between;
+}
+
+div.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  height: fit-content;
+  padding: 6px 10px;
+  background: #6c63ff;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+div.content {
+  position: relative;
+  left: 22%;
+  padding: 30px;
+  width: 78%;
+  min-height: 90vh;
+}
+
+div.header {
+  width: 40%;
+}
+
+div.search {
+  width: 60%;
+}
+div.search form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+div.wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+div.search_container {
+  position: relative;
+  gap: 20px;
+}
+div.search_container input[type=text] {
+  position: relative;
+  font-size: 15px;
+  width: 100%;
+  padding: 7px;
+  border: 1.5px solid #6c63ff;
+  border-radius: 5px;
+}
+div.search_container i {
+  position: absolute;
+  top: 25%;
+  right: 10px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.3607843137);
+}
+
+select {
+  padding: 7px;
+  background: #6c63ff;
+  border-radius: 5px;
+  border-color: transparent;
+  color: white;
+}
+
+option {
+  color: var(--lightTheme);
+}
+
+option:hover {
+  background: var(--darkTheme);
+}
+
+div.search_container > i {
+  position: absolute;
+  top: 25%;
+  right: 10px;
+  font-size: 18px;
+  color: var(--primary);
+}
+
+i {
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.task {
+  display: flex;
+  width: 100%;
+  min-height: 80px;
+  background: rgba(0, 0, 0, 0.0784313725);
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+.task div.task-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12%;
+  gap: 1em;
+  padding: 10px;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8%;
+}
+
+.task-details {
+  width: 90%;
+  padding: 5px;
+}
+.task-details h5, .task-details h3 {
+  padding: 0px;
+  margin: 10px;
+  text-align: left;
+}
+.task-details i {
+  font-size: 7.5px;
+  margin: 10px;
+  position: relative;
+  bottom: 1.5px;
+  color: red;
+}
+
+.pop-container {
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  position: fixed;
+  background: black;
+  opacity: 0.75;
+  z-index: 999999999999;
+  transition: 0.5s ease-in-out;
+}
+
+.add-list {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  max-height: 50%;
+  background: white;
+  border-radius: 6px;
+  z-index: 9999999999;
+  padding: 10px;
+  transition: 0.5s ease-in-out;
+}
+.add-list form {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.add-list form > .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-task {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  max-height: 50%;
+  background: white;
+  border-radius: 6px;
+  z-index: 9999999999;
+  padding: 10px;
+  transition: 0.5s ease-in-out;
+}
+.add-task form {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.add-task form > .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, textarea {
+  position: relative;
+  font-size: 15px;
+  width: 100%;
+  padding: 7px;
+  border: 1.5px solid #6c63ff;
+  border-radius: 5px;
+}
+
+.action-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+input[type=submit] {
+  width: fit-content;
+  background: #6c63ff;
+  color: white;
+  cursor: pointer;
+}
+
+.container-observer {
+  visibility: visible;
+}
+
+.op-1 {
+  opacity: 1;
+}
+
+.op-75 {
+  opacity: 0.75;
+}
+
+.empty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 80vh;
+  width: 100%;
+}
+
+/*# sourceMappingURL=main.css.map */
